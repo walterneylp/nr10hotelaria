@@ -1,0 +1,74 @@
+TEMPLATE DE MENSAGEM WHATSAPP PARA N8N + EVOLUTION
+
+No nó "Enviar texto" do Evolution, no campo "Mensagem", use este código:
+
+================================================================================
+OPÇÃO 1: Mensagem Simples (Recomendada)
+================================================================================
+
+Nova solicitação de contato - NR-10 Hotelaria
+
+Nome: {{ $json.body.name }}
+Email: {{ $json.body.email }}
+Telefone: {{ $json.body.phone }}
+Empresa: {{ $json.body.company }}
+Interesse: {{ $json.body.interest }}
+Mensagem: {{ $json.body.message }}
+
+Data: {{ $json.body.data_envio }}
+
+================================================================================
+OPÇÃO 2: Mensagem Formatada com Emoji
+================================================================================
+
+🎯 *Nova Solicitação - NR-10 Hotelaria*
+
+👤 *Nome:* {{ $json.body.name }}
+📧 *Email:* {{ $json.body.email }}
+📱 *Telefone:* {{ $json.body.phone || 'Não informado' }}
+🏢 *Empresa:* {{ $json.body.company || 'Não informada' }}
+📚 *Interesse:* {{ $json.body.interest }}
+
+💬 *Mensagem:*
+{{ $json.body.message || 'Sem mensagem' }}
+
+⏰ *Enviado em:* {{ $json.body.data_envio }}
+
+================================================================================
+OPÇÃO 3: Se quiser converter o código do interesse para texto legível
+================================================================================
+
+Adicione um nó "Code" antes do Evolution com este código:
+
+// Mapear interesse para texto
+const interesseMap = {
+  'basico': 'NR-10 Básico (40h)',
+  'sep': 'NR-10 SEP (40h)',
+  'reciclagem': 'Reciclagem (08 ou 16h)',
+  'combo': 'Combo Completo',
+  'incompany': 'In Company'
+};
+
+const item = $input.first().json;
+const body = item.body;
+
+body.interesse_texto = interesseMap[body.interest] || body.interest;
+
+return [{ json: body }];
+
+// Depois use no WhatsApp:
+// {{ $json.interesse_texto }}
+
+================================================================================
+CONFIGURAÇÃO DO NÓ EVOLUTION
+================================================================================
+
+1. Credencial: Evolution account (já configurada ✓)
+2. Recurso: Mensagem
+3. Operação: Enviar Texto
+4. Nome Da Instância: apogeu_tti (já configurado ✓)
+5. Número Do Destinatário: 5517991236884 (ou o número que receberá)
+6. Mensagem: [cole uma das opções acima]
+
+IMPORTANTE: Não use {{ $json.body }} diretamente - isso envia o objeto JSON.
+Use os campos individuais: {{ $json.body.name }}, {{ $json.body.email }}, etc.

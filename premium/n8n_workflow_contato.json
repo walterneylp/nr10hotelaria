@@ -1,0 +1,109 @@
+{
+  "name": "Contato Site NR-10 Hotelaria",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "contato-nr10",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "contato-nr10"
+    },
+    {
+      "parameters": {
+        "to": "contato@nr10hotelaria.com.br",
+        "subject": "🎯 Nova solicitação de contato - {{ $json.body.name }}",
+        "text": "Nova solicitação de contato\n\nNome: {{ $json.body.name }}\nEmail: {{ $json.body.email }}\nTelefone: {{ $json.body.phone }}\nEmpresa: {{ $json.body.company }}\nInteresse: {{ $json.body.interest }}\nMensagem: {{ $json.body.message }}\n\nEnviado em: {{ $json.body.data_envio }}",
+        "html": "<h2 style='color: #d4af37;'>🎯 Nova solicitação de contato - NR-10 Hotelaria</h2><hr><p><strong>Nome:</strong> {{ $json.body.name }}</p><p><strong>Email:</strong> {{ $json.body.email }}</p><p><strong>Telefone:</strong> {{ $json.body.phone || 'Não informado' }}</p><p><strong>Empresa:</strong> {{ $json.body.company || 'Não informada' }}</p><p><strong>Interesse:</strong> {{ $json.body.interest }}</p><p><strong>Mensagem:</strong><br>{{ $json.body.message || 'Sem mensagem' }}</p><hr><p style='color: #666; font-size: 12px;'>Enviado em: {{ $json.body.data_envio }}<br>Origem: {{ $json.body.origem }}</p>",
+        "options": {}
+      },
+      "id": "email-node",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "json": "{\"success\": true, \"message\": \"Solicitação recebida com sucesso!\"}",
+        "options": {}
+      },
+      "id": "respond-node",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Mapear valores do interesse para texto legível\nconst interesseMap = {\n  'basico': 'NR-10 Básico (40h)',\n  'sep': 'NR-10 SEP (40h)',\n  'reciclagem': 'Reciclagem (16h)',\n  'combo': 'Combo Completo',\n  'incompany': 'In Company'\n};\n\nconst item = $input.first().json;\nconst body = item.body;\n\n// Substituir o código do interesse pelo texto\nbody.interesse_texto = interesseMap[body.interest] || body.interest;\n\nreturn [{ json: body }];"
+      },
+      "id": "code-node",
+      "name": "Process Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "Site",
+      "id": "site-tag",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}
