@@ -1,87 +1,98 @@
 /**
  * NR-10 Hotelaria - Main JavaScript
- * Interatividade e funcionalidades do site
+ * Versão Dark Theme
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     // ========================================
-    // Mobile Navigation
+    // N8N Webhook Configuration
     // ========================================
+    const N8N_WEBHOOK_URL = 'https://n8n.chatbotpro.com.br/webhook-test/contato-nr10';
+    
+    // ========================================
+    // Progress Bar
+    // ========================================
+    const progressBar = document.getElementById('progressBar');
+    
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+    });
+
+    // ========================================
+    // Navigation
+    // ========================================
+    const header = document.getElementById('header');
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav-link');
 
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile toggle
     if (mobileToggle) {
-        mobileToggle.addEventListener('click', function() {
+        mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             
-            // Animate hamburger
             const spans = mobileToggle.querySelectorAll('span');
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
             } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                spans.forEach(span => {
+                    span.style.transform = 'none';
+                    span.style.opacity = '1';
+                });
             }
         });
     }
 
-    // Close mobile menu when clicking a link
+    // Close menu on link click
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             const spans = mobileToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
+            spans.forEach(span => {
+                span.style.transform = 'none';
+                span.style.opacity = '1';
+            });
+        });
+    });
+
+    // Active link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.pageYOffset + 150;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
         });
     });
 
     // ========================================
-    // Header Scroll Effect
-    // ========================================
-    const header = document.getElementById('header');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        
-        // Add scrolled class for styling
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
-    });
-
-    // ========================================
-    // Back to Top Button
-    // ========================================
-    const backToTop = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 500) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-
-    backToTop.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    // ========================================
-    // Smooth Scroll for Anchor Links
+    // Smooth Scroll
     // ========================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -93,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (target) {
                 const headerHeight = header.offsetHeight;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                const targetPosition = target.offsetTop - headerHeight;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -104,24 +115,122 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ========================================
-    // Form Handling
+    // Animated Counter
+    // ========================================
+    const counters = document.querySelectorAll('.stat-number');
+    let counted = false;
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !counted) {
+                counted = true;
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    animateCounter(counter, 0, target, 2000);
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.hero-stats');
+    if (statsSection) {
+        counterObserver.observe(statsSection);
+    }
+
+    function animateCounter(element, start, end, duration) {
+        const range = end - start;
+        const increment = range / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= end) {
+                current = end;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current);
+        }, 16);
+    }
+
+    // ========================================
+    // Contact Form - N8N Integration
     // ========================================
     const contactForm = document.getElementById('contactForm');
-
+    
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form data
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Collect form data
             const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone') || '',
+                company: formData.get('company') || '',
+                interest: formData.get('interest'),
+                message: formData.get('message') || '',
+                data_envio: new Date().toISOString(),
+                origem: window.location.href
+            };
             
-            // Here you would normally send the data to a server
-            // For now, show a success message
-            showNotification('Solicitação enviada com sucesso! Entraremos em contato em breve.', 'success');
+            // Validate required fields
+            if (!data.name || !data.email || !data.interest) {
+                showNotification('Por favor, preencha nome, email e interesse.', 'error');
+                return;
+            }
             
-            // Reset form
-            contactForm.reset();
+            // Show loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    showNotification('Solicitação enviada com sucesso! Entraremos em contato em breve.', 'success');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                
+            } catch (error) {
+                console.error('Erro ao enviar:', error);
+                
+                // Fallback: redirect to n8n
+                showNotification('Redirecionando para confirmação...', 'success');
+                setTimeout(() => {
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = N8N_WEBHOOK_URL;
+                    form.style.display = 'none';
+                    
+                    Object.keys(data).forEach(key => {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = data[key];
+                        form.appendChild(input);
+                    });
+                    
+                    document.body.appendChild(form);
+                    form.submit();
+                }, 1000);
+                
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
     }
 
@@ -129,11 +238,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Notification System
     // ========================================
     function showNotification(message, type = 'success') {
-        // Remove existing notifications
         const existing = document.querySelector('.notification');
         if (existing) existing.remove();
         
-        // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.innerHTML = `
@@ -141,165 +248,82 @@ document.addEventListener('DOMContentLoaded', function() {
             <span>${message}</span>
         `;
         
-        // Add styles
         notification.style.cssText = `
             position: fixed;
             top: 100px;
-            right: 20px;
+            right: 30px;
             background: ${type === 'success' ? '#00d4aa' : '#ef4444'};
             color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 16px 24px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
             font-weight: 500;
-            z-index: 9999;
-            transform: translateX(100%);
+            z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateX(120%);
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         `;
         
         document.body.appendChild(notification);
         
-        // Animate in
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             notification.style.transform = 'translateX(0)';
             notification.style.opacity = '1';
-        }, 10);
+        });
         
-        // Remove after delay
         setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
+            notification.style.transform = 'translateX(120%)';
             notification.style.opacity = '0';
-            setTimeout(() => notification.remove(), 300);
+            setTimeout(() => notification.remove(), 400);
         }, 5000);
     }
 
     // ========================================
-    // Intersection Observer for Animations
+    // Back to Top
     // ========================================
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
-            }
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-    }, observerOptions);
-
-    // Observe cards and sections
-    document.querySelectorAll('.problem-card, .content-card, .format-card, .audience-item, .differential-item').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(el);
     });
 
-    // Add animation class styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .animate-in {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(style);
-
     // ========================================
-    // Counter Animation for Stats
+    // Reveal on Scroll
     // ========================================
-    const statsSection = document.querySelector('.hero-stats');
-    const statNumbers = document.querySelectorAll('.stat-number');
-    let counted = false;
-
-    const statsObserver = new IntersectionObserver((entries) => {
+    const revealElements = document.querySelectorAll('.problem-card, .content-card, .pricing-card, .trigger-stat');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !counted) {
-                counted = true;
-                statNumbers.forEach(stat => {
-                    const finalValue = stat.textContent;
-                    const isPercentage = finalValue.includes('%');
-                    const isHours = finalValue.includes('h');
-                    const numericValue = parseInt(finalValue);
-                    
-                    animateCounter(stat, 0, numericValue, 1500, isPercentage, isHours);
-                });
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
-
-    if (statsSection) {
-        statsObserver.observe(statsSection);
-    }
-
-    function animateCounter(element, start, end, duration, isPercentage = false, isHours = false) {
-        const range = end - start;
-        const minTimer = 50;
-        let stepTime = Math.abs(Math.floor(duration / range));
-        stepTime = Math.max(stepTime, minTimer);
-        
-        let current = start;
-        const timer = setInterval(() => {
-            current++;
-            let displayValue = current;
-            if (isPercentage) displayValue += '%';
-            else if (isHours) displayValue += 'h';
-            
-            element.textContent = displayValue;
-            
-            if (current >= end) {
-                clearInterval(timer);
-                element.textContent = end + (isPercentage ? '%' : isHours ? 'h' : '');
-            }
-        }, stepTime);
-    }
-
-    // ========================================
-    // Lazy Loading Images (if any)
-    // ========================================
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                        img.classList.add('loaded');
-                    }
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-
-    // ========================================
-    // WhatsApp Link Generator
-    // ========================================
-    // ATUALIZE AQUI COM SEU NÚMERO DE WHATSAPP
-    // Formato: 55 + DDD + NÚMERO (somente números, sem espaços ou traços)
-    // Exemplo: 5511987654321
-    const whatsappNumber = '55'; // <-- ADICIONE SEU NÚMERO AQUI
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     
-    const whatsappMessage = 'Olá! Gostaria de mais informações sobre o treinamento NR-10 Aplicada à Hotelaria.';
-    
-    if (whatsappNumber.length > 2) {
-        document.querySelectorAll('a[href="https://wa.me/"]').forEach(link => {
-            link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-        });
-    }
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        revealObserver.observe(el);
+    });
 
-    console.log('NR-10 Hotelaria - Site carregado com sucesso!');
+    console.log('%c NR-10 Hotelaria ', 'background: linear-gradient(135deg, #d4af37, #e8c547); color: #0a0a0f; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+    console.log('%c Dark Theme - Site carregado com sucesso! ', 'color: #d4af37;');
+    console.log('%c n8n Webhook: ' + N8N_WEBHOOK_URL, 'color: #00d4aa;');
 });

@@ -4,31 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NR-10 Aplicada à Hotelaria | Segurança Elétrica para Hotéis e Resorts</title>
-    <meta name="description" content="Treinamento NR-10 especializado para eletricistas de hotéis, pousadas e resorts. Capacitação técnica em segurança elétrica com foco em áreas molhadas, sistemas críticos e operação com ocupação ativa.">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Treinamento NR-10 especializado para eletricistas de hotéis, pousadas e resorts. Capacitação técnica com foco em áreas molhadas, sistemas críticos e operação com ocupação ativa.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
     <!-- Header -->
     <header class="header" id="header">
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <i class="fas fa-bolt"></i>
+                    <div class="logo-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
                     <span>NR-10<span class="highlight">Hotelaria</span></span>
                 </a>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#inicio" class="nav-link">Início</a></li>
+                    <li><a href="#inicio" class="nav-link active">Início</a></li>
                     <li><a href="#sobre" class="nav-link">Sobre</a></li>
                     <li><a href="#conteudo" class="nav-link">Conteúdo</a></li>
-                    <li><a href="#formatos" class="nav-link">Formatos</a></li>
+                    <li><a href="#modalidades" class="nav-link">Modalidades</a></li>
+                    <li><a href="#porque" class="nav-link">POR QUE INVESTIR</a></li>
                     <li><a href="#contato" class="nav-link">Contato</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="https://wa.me/" class="btn btn-whatsapp" target="_blank">
+                    <a href="https://wa.me/5517991236884" class="btn btn-whatsapp" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                         <span>Fale Conosco</span>
                     </a>
@@ -45,7 +51,8 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-bg">
-            <div class="hero-pattern"></div>
+            <div class="hero-particles"></div>
+            <div class="hero-gradient"></div>
         </div>
         <div class="container">
             <div class="hero-content">
@@ -54,43 +61,93 @@
                     <span>Treinamento Certificado</span>
                 </div>
                 <h1 class="hero-title">
-                    NR-10 Aplicada à
-                    <span class="gradient-text">Hotelaria</span>
+                    <span class="title-line">Segurança Elétrica</span>
+                    <span class="title-line highlight">Especializada</span>
+                    <span class="title-line">para Hotelaria</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Segurança elétrica especializada para eletricistas de <strong>hotéis, pousadas e resorts</strong>. 
-                    Capacitação técnica com foco em áreas molhadas, sistemas críticos e operação com ocupação ativa.
+                    Capacitação técnica avançada para eletricistas de <strong>hotéis, pousadas e resorts</strong>. 
+                    Protocolos específicos para áreas molhadas, sistemas críticos e operação com ocupação ativa.
                 </p>
                 <div class="hero-actions">
                     <a href="#contato" class="btn btn-primary btn-lg">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-paper-plane"></i>
                         Solicitar Informações
                     </a>
-                    <a href="#sobre" class="btn btn-outline btn-lg">
+                    <a href="#conteudo" class="btn btn-secondary btn-lg">
                         <i class="fas fa-play-circle"></i>
-                        Conheça o Treinamento
+                        Ver Conteúdo
                     </a>
                 </div>
                 <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">40h</span>
-                        <span class="stat-label">Básico + SEP</span>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" data-count="40">0</span>
+                            <span class="stat-suffix">h</span>
+                            <span class="stat-label">Básico</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">16h</span>
-                        <span class="stat-label">Reciclagem</span>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" data-count="40">0</span>
+                            <span class="stat-suffix">h</span>
+                            <span class="stat-label">SEP</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Setorial</span>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" data-count="16">0</span>
+                            <span class="stat-suffix">h</span>
+                            <span class="stat-label">08/16h Reciclagens</span>
+                        </div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" data-count="100">0</span>
+                            <span class="stat-suffix">%</span>
+                            <span class="stat-label">Setorial</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="hero-scroll">
-            <a href="#sobre">
-                <i class="fas fa-chevron-down"></i>
-            </a>
+    </section>
+
+    <!-- Clients Marquee -->
+    <section class="clients">
+        <div class="clients-container">
+            <p class="clients-label">Ideal para profissionais de:</p>
+            <div class="clients-marquee">
+                <div class="clients-track">
+                    <span><i class="fas fa-hotel"></i> Hotéis 5 Estrelas</span>
+                    <span><i class="fas fa-umbrella-beach"></i> Resorts</span>
+                    <span><i class="fas fa-bed"></i> Pousadas Premium</span>
+                    <span><i class="fas fa-building"></i> Condomínios</span>
+                    <span><i class="fas fa-spa"></i> Spas & Wellness</span>
+                    <span><i class="fas fa-water"></i> Parques Aquáticos</span>
+                    <span><i class="fas fa-hotel"></i> Hotéis 5 Estrelas</span>
+                    <span><i class="fas fa-umbrella-beach"></i> Resorts</span>
+                    <span><i class="fas fa-bed"></i> Pousadas Premium</span>
+                    <span><i class="fas fa-building"></i> Condomínios</span>
+                    <span><i class="fas fa-spa"></i> Spas & Wellness</span>
+                    <span><i class="fas fa-water"></i> Parques Aquáticos</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -109,29 +166,53 @@
                     <div class="problem-icon">
                         <i class="fas fa-water"></i>
                     </div>
+                    <span class="problem-number">01</span>
                     <h3>Áreas Molhadas de Alto Risco</h3>
-                    <p>Piscinas, SPA, cozinhas industriais e lavanderias apresentam risco elevado de choque elétrico que precisam de protocolos específicos.</p>
+                    <p>Piscinas, SPA, cozinhas industriais e lavanderias apresentam risco elevado de choque elétrico.</p>
+                    <ul class="problem-list">
+                        <li>Risco de choque indireto</li>
+                        <li>Equipamentos submersíveis</li>
+                        <li>Áreas classe 0 e 1</li>
+                    </ul>
                 </div>
                 <div class="problem-card">
                     <div class="problem-icon">
                         <i class="fas fa-users"></i>
                     </div>
+                    <span class="problem-number">02</span>
                     <h3>Operação 24/7 com Público</h3>
-                    <p>Manutenção elétrica precisa ser realizada com hóspedes presentes, exigindo procedimentos rigorosos de isolamento e sinalização.</p>
+                    <p>Manutenção elétrica precisa ser realizada com hóspedes presentes, exigindo protocolos rigorosos.</p>
+                    <ul class="problem-list">
+                        <li>Isolamento temporário de áreas</li>
+                        <li>Sinalização especializada</li>
+                        <li>Controle de acesso técnico</li>
+                    </ul>
                 </div>
                 <div class="problem-card">
                     <div class="problem-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
+                    <span class="problem-number">03</span>
                     <h3>Sistemas Críticos</h3>
-                    <p>Geradores, ATS, sistemas de incêndio e HVAC são essenciais para a operação e demandam manutenção preventiva constante.</p>
+                    <p>Geradores, ATS, sistemas de incêndio e HVAC são essenciais para a operação.</p>
+                    <ul class="problem-list">
+                        <li>Grupos geradores</li>
+                        <li>Transferência automática</li>
+                        <li>Cargas prioritárias</li>
+                    </ul>
                 </div>
                 <div class="problem-card">
                     <div class="problem-icon">
                         <i class="fas fa-balance-scale"></i>
                     </div>
+                    <span class="problem-number">04</span>
                     <h3>Alto Risco Jurídico</h3>
-                    <p>Acidentes elétricos em hotéis geram exposição legal significativa. Treinamento específico é proteção jurídica para a empresa.</p>
+                    <p>Acidentes elétricos em hotéis geram exposição legal significativa.</p>
+                    <ul class="problem-list">
+                        <li>Responsabilidade civil</li>
+                        <li>Auditorias e fiscalizações</li>
+                        <li>Seguros e garantias</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -143,41 +224,22 @@
             <div class="solution-wrapper">
                 <div class="solution-content">
                     <span class="section-tag">A Solução</span>
-                    <h2 class="section-title">Treinamento Técnico, Normativo e Operacional</h2>
+                    <h2 class="section-title">Treinamento Técnico,<br>Normativo e Operacional</h2>
                     <p class="solution-text">
                         O <strong>NR-10 Aplicada à Hotelaria</strong> foi desenvolvido para capacitar equipes de manutenção 
                         para atuar com <strong>segurança, técnica e conformidade normativa</strong> em ambientes de hospedagem.
                     </p>
-                    <p class="solution-text">
-                        Diferente dos cursos genéricos de NR-10, este programa aborda <strong>cenários reais de risco elétrico</strong> 
-                        em ambientes com ocupação contínua de público, áreas molhadas e infraestrutura crítica.
-                    </p>
                     <ul class="solution-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Conteúdo alinhado à NR-10 e normas técnicas correlatas</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Casos reais de falhas e acidentes em meios de hospedagem</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Procedimentos aplicáveis no dia a dia operacional</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Material "blindado" para auditoria e fiscalização</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Foco em prevenção e rastreabilidade de procedimentos</span>
-                        </li>
+                        <li><i class="fas fa-check-circle"></i><span>Conteúdo 100% Setorial</span></li>
+                        <li><i class="fas fa-check-circle"></i><span>Material Auditável</span></li>
+                        <li><i class="fas fa-check-circle"></i><span>Casos Reais de Acidentes</span></li>
+                        <li><i class="fas fa-check-circle"></i><span>Checklists Operacionais</span></li>
+                        <li><i class="fas fa-check-circle"></i><span>Foco Jurídico-Técnico</span></li>
                     </ul>
                 </div>
                 <div class="solution-visual">
                     <div class="solution-image">
-                        <div class="solution-badge">
+                        <div class="image-content">
                             <i class="fas fa-shield-alt"></i>
                             <span>Material Auditável</span>
                         </div>
@@ -192,276 +254,215 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Conteúdo Programático</span>
-                <h2 class="section-title">O que você vai aprender</h2>
-                <p class="section-desc">
-                    Módulos específicos desenvolvidos para a realidade da manutenção elétrica em meios de hospedagem
-                </p>
+                <h2 class="section-title">O que você vai dominar</h2>
+                <p class="section-desc">8 módulos especializados desenvolvidos para a realidade da hotelaria</p>
             </div>
             <div class="content-grid">
                 <div class="content-card">
                     <div class="content-number">01</div>
                     <div class="content-icon"><i class="fas fa-building"></i></div>
                     <h3>Arquitetura Elétrica em Meios de Hospedagem</h3>
-                    <p>Distribuição elétrica por pavimentos, quadros setoriais, cargas críticas e setorização elétrica em hotéis.</p>
+                    <p>Distribuição elétrica por pavimentos, quadros setoriais, cargas críticas.</p>
                 </div>
                 <div class="content-card">
                     <div class="content-number">02</div>
                     <div class="content-icon"><i class="fas fa-water"></i></div>
                     <h3>Áreas de Alto Risco</h3>
-                    <p>Piscinas, SPA, cozinhas industriais, lavanderias, casas de máquinas e áreas externas molhadas.</p>
+                    <p>Piscinas, SPA, cozinhas industriais, lavanderias, casas de máquinas.</p>
                 </div>
                 <div class="content-card">
                     <div class="content-number">03</div>
                     <div class="content-icon"><i class="fas fa-snowflake"></i></div>
                     <h3>Sistemas Eletromecânicos Pesados</h3>
-                    <p>HVAC central, chillers, bombas, torres de resfriamento e painéis de comando.</p>
+                    <p>HVAC central, chillers, bombas, torres de resfriamento.</p>
                 </div>
                 <div class="content-card">
                     <div class="content-number">04</div>
                     <div class="content-icon"><i class="fas fa-car-battery"></i></div>
                     <h3>Sistemas de Emergência</h3>
-                    <p>Geradores, ATS (transferência automática), cargas prioritárias, testes com carga e riscos operacionais.</p>
+                    <p>Geradores, ATS, cargas prioritárias, testes com carga.</p>
                 </div>
                 <div class="content-card">
                     <div class="content-number">05</div>
                     <div class="content-icon"><i class="fas fa-user-shield"></i></div>
                     <h3>Trabalhos com Ocupação Ativa</h3>
-                    <p>Manutenção com hóspedes presentes, isolamento temporário, bloqueio e etiquetagem, controle de acesso técnico.</p>
+                    <p>Manutenção com hóspedes presentes, isolamento temporário, LOTO.</p>
                 </div>
                 <div class="content-card">
                     <div class="content-number">06</div>
                     <div class="content-icon"><i class="fas fa-fire-extinguisher"></i></div>
                     <h3>Integração com Sistemas de Incêndio</h3>
-                    <p>Bombas de incêndio, iluminação de emergência, pressurização, sistemas de detecção e interface elétrica.</p>
+                    <p>Bombas de incêndio, iluminação de emergência, pressurização.</p>
                 </div>
                 <div class="content-card">
                     <div class="content-number">07</div>
                     <div class="content-icon"><i class="fas fa-clipboard-check"></i></div>
                     <h3>Procedimentos Operacionais Seguros</h3>
-                    <p>Desenergização, verificação de ausência de tensão, aterramento temporário, sequência segura de intervenção.</p>
+                    <p>Desenergização, verificação de ausência de tensão, aterramento.</p>
                 </div>
                 <div class="content-card">
                     <div class="content-number">08</div>
                     <div class="content-icon"><i class="fas fa-search"></i></div>
                     <h3>Estudos de Caso Reais</h3>
-                    <p>Acidentes em piscinas, falhas em cozinhas, choque em áreas molhadas, falhas de gerador e lições aprendidas.</p>
+                    <p>Acidentes em piscinas, falhas em cozinhas, lições aprendidas.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Formats Section -->
-    <section class="formats" id="formatos">
+    <!-- Pricing Section -->
+    <section class="pricing" id="modalidades">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Modalidades</span>
-                <h2 class="section-title">Formatos de Treinamento</h2>
-                <p class="section-desc">
-                    Escolha o formato que melhor atende às necessidades da sua equipe
-                </p>
+                <h2 class="section-title">Escolha o formato ideal</h2>
+                <p class="section-desc">Opções flexíveis para atender diferentes necessidades</p>
             </div>
-            <div class="formats-grid">
-                <!-- Básico 40h -->
-                <div class="format-card featured">
-                    <div class="format-badge">Mais Popular</div>
-                    <div class="format-header">
-                        <div class="format-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon"><i class="fas fa-bolt"></i></div>
                         <h3>NR-10 Básico</h3>
-                        <span class="format-hours">40 horas</span>
+                        <div class="pricing-hours">
+                            <span class="hours-number">40</span>
+                            <span class="hours-label">horas</span>
+                        </div>
                     </div>
-                    <div class="format-body">
-                        <p class="format-desc">Fundamentos da segurança com eletricidade aplicados à realidade da hotelaria.</p>
-                        <ul class="format-features">
+                    <div class="pricing-body">
+                        <p>Fundamentos da segurança com eletricidade aplicados à realidade da hotelaria.</p>
+                        <ul class="pricing-features">
                             <li><i class="fas fa-check"></i> Princípios do risco elétrico</li>
-                            <li><i class="fas fa-check"></i> Efeitos da eletricidade no corpo humano</li>
-                            <li><i class="fas fa-check"></i> Medidas de proteção coletiva e individual</li>
-                            <li><i class="fas fa-check"></i> Prontuário das instalações elétricas</li>
-                            <li><i class="fas fa-check"></i> Procedimentos de trabalho e PT</li>
+                            <li><i class="fas fa-check"></i> Efeitos no corpo humano</li>
+                            <li><i class="fas fa-check"></i> Medidas de proteção</li>
+                            <li><i class="fas fa-check"></i> Prontuário das instalações</li>
+                            <li><i class="fas fa-check"></i> Procedimentos e PT</li>
                             <li><i class="fas fa-check"></i> Contextualização hoteleira</li>
                         </ul>
                     </div>
-                    <div class="format-footer">
-                        <a href="#contato" class="btn btn-primary btn-block">Solicitar Informações</a>
-                    </div>
-                </div>
-
-                <!-- SEP 40h -->
-                <div class="format-card">
-                    <div class="format-header">
-                        <div class="format-icon">
-                            <i class="fas fa-hard-hat"></i>
-                        </div>
-                        <h3>NR-10 SEP</h3>
-                        <span class="format-hours">40 horas</span>
-                    </div>
-                    <div class="format-body">
-                        <p class="format-desc">Serviços em Eletricidade para profissionais que trabalham em sistemas energizados.</p>
-                        <ul class="format-features">
-                            <li><i class="fas fa-check"></i> Estudo de arco elétrico</li>
-                            <li><i class="fas fa-check"></i> Risco por ignição de arco</li>
-                            <li><i class="fas fa-check"></i> Equipamentos de proteção</li>
-                            <li><i class="fas fa-check"></i> Ferramentas isoladas</li>
-                            <li><i class="fas fa-check"></i> Procedimentos em alta tensão</li>
-                            <li><i class="fas fa-check"></i> Foco em sistemas críticos de hotelaria</li>
-                        </ul>
-                    </div>
-                    <div class="format-footer">
+                    <div class="pricing-footer">
                         <a href="#contato" class="btn btn-outline btn-block">Solicitar Informações</a>
                     </div>
                 </div>
 
-                <!-- Reciclagem 16h -->
-                <div class="format-card">
-                    <div class="format-header">
-                        <div class="format-icon">
-                            <i class="fas fa-sync-alt"></i>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon"><i class="fas fa-hard-hat"></i></div>
+                        <h3>NR-10 SEP</h3>
+                        <div class="pricing-hours">
+                            <span class="hours-number">40</span>
+                            <span class="hours-label">horas</span>
                         </div>
-                        <h3>Reciclagem</h3>
-                        <span class="format-hours">16 horas</span>
                     </div>
-                    <div class="format-body">
-                        <p class="format-desc">Atualização obrigatória para profissionais que já possuem NR-10 válida.</p>
-                        <ul class="format-features">
+                    <div class="pricing-body">
+                        <p>Serviços em Eletricidade para profissionais que trabalham em sistemas energizados.</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Estudo de arco elétrico</li>
+                            <li><i class="fas fa-check"></i> Risco por ignição</li>
+                            <li><i class="fas fa-check"></i> EPIs especializados</li>
+                            <li><i class="fas fa-check"></i> Ferramentas isoladas</li>
+                            <li><i class="fas fa-check"></i> Procedimentos em AT</li>
+                            <li><i class="fas fa-check"></i> Sistemas críticos hotelaria</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contato" class="btn btn-outline btn-block">Solicitar Informações</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon"><i class="fas fa-sync-alt"></i></div>
+                        <h3>Reciclagem</h3>
+                        <div class="pricing-hours">
+                            <span class="hours-number">08 ou 16</span>
+                            <span class="hours-label">horas</span>
+                        </div>
+                    </div>
+                    <div class="pricing-body">
+                        <p>Atualização obrigatória para profissionais que já possuem NR-10 válida.</p>
+                        <ul class="pricing-features">
                             <li><i class="fas fa-check"></i> Atualizações normativas</li>
                             <li><i class="fas fa-check"></i> Revisão de procedimentos</li>
                             <li><i class="fas fa-check"></i> Novos casos de estudo</li>
-                            <li><i class="fas fa-check"></i> Contexto elétrico da hotelaria</li>
-                            <li><i class="fas fa-check"></i> Áreas de risco atualizadas</li>
+                            <li><i class="fas fa-check"></i> Contexto hoteleiro</li>
+                            <li><i class="fas fa-check"></i> Áreas de risco</li>
                             <li><i class="fas fa-check"></i> Avaliação técnica</li>
                         </ul>
                     </div>
-                    <div class="format-footer">
+                    <div class="pricing-footer">
                         <a href="#contato" class="btn btn-outline btn-block">Solicitar Informações</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Audience Section -->
-    <section class="audience">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Público-Alvo</span>
-                <h2 class="section-title">Para quem é este treinamento?</h2>
-            </div>
-            <div class="audience-grid">
-                <div class="audience-item">
-                    <i class="fas fa-user-hard-hat"></i>
-                    <span>Eletricistas de manutenção predial</span>
-                </div>
-                <div class="audience-item">
-                    <i class="fas fa-tools"></i>
-                    <span>Técnicos de manutenção de hotéis e resorts</span>
-                </div>
-                <div class="audience-item">
-                    <i class="fas fa-user-tie"></i>
-                    <span>Supervisores de facilities</span>
-                </div>
-                <div class="audience-item">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Engenheiros e técnicos de manutenção</span>
-                </div>
-                <div class="audience-item">
-                    <i class="fas fa-users-cog"></i>
-                    <span>Equipes terceirizadas de elétrica</span>
-                </div>
-                <div class="audience-item">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Gestores de manutenção hoteleira</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Differentials Section -->
-    <section class="differentials">
-        <div class="container">
-            <div class="differentials-wrapper">
-                <div class="differentials-content">
-                    <span class="section-tag">Diferenciais</span>
-                    <h2 class="section-title">Por que escolher nosso treinamento?</h2>
-                    <div class="differentials-list">
-                        <div class="differential-item">
-                            <div class="differential-icon">
-                                <i class="fas fa-hotel"></i>
-                            </div>
-                            <div class="differential-text">
-                                <h4>Conteúdo 100% Setorial</h4>
-                                <p>Desenvolvido exclusivamente para a realidade de hotéis, pousadas e resorts.</p>
-                            </div>
-                        </div>
-                        <div class="differential-item">
-                            <div class="differential-icon">
-                                <i class="fas fa-clipboard-list"></i>
-                            </div>
-                            <div class="differential-text">
-                                <h4>Material Auditável</h4>
-                                <p>Documentação completa para fiscalizações, auditorias e comprovação legal.</p>
-                            </div>
-                        </div>
-                        <div class="differential-item">
-                            <div class="differential-icon">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <div class="differential-text">
-                                <h4>Casos Reais de Acidentes</h4>
-                                <p>Estudos de caso baseados em incidentes reais em meios de hospedagem.</p>
-                            </div>
-                        </div>
-                        <div class="differential-item">
-                            <div class="differential-icon">
-                                <i class="fas fa-tasks"></i>
-                            </div>
-                            <div class="differential-text">
-                                <h4>Checklists Operacionais</h4>
-                                <p>Ferramentas práticas para aplicação imediata no dia a dia da manutenção.</p>
-                            </div>
-                        </div>
-                        <div class="differential-item">
-                            <div class="differential-icon">
-                                <i class="fas fa-gavel"></i>
-                            </div>
-                            <div class="differential-text">
-                                <h4>Foco Jurídico-Técnico</h4>
-                                <p>Proteção legal da empresa através de capacitação documentada e rastreável.</p>
-                            </div>
-                        </div>
+            <div class="delivery-info">
+                <div class="delivery-card">
+                    <h4><i class="fas fa-laptop"></i> Modalidades de Entrega</h4>
+                    <div class="delivery-options">
+                        <span class="delivery-tag">Online ao Vivo</span>
+                        <span class="delivery-tag">Online Gravado</span>
+                        <span class="delivery-tag">In Company</span>
+                        <span class="delivery-tag">Turmas Fechadas</span>
                     </div>
                 </div>
-                <div class="differentials-deliverables">
-                    <h3>Entregáveis do Treinamento</h3>
-                    <ul>
-                        <li><i class="fas fa-file-powerpoint"></i> Slides técnicos estruturados</li>
-                        <li><i class="fas fa-book"></i> Apostila técnica completa</li>
-                        <li><i class="fas fa-clipboard-check"></i> Roteiro de procedimentos operacionais</li>
-                        <li><i class="fas fa-list-check"></i> Checklists de segurança elétrica</li>
-                        <li><i class="fas fa-search"></i> Estudos de caso comentados</li>
-                        <li><i class="fas fa-clipboard-question"></i> Avaliação técnica</li>
-                        <li><i class="fas fa-certificate"></i> Certificado conforme carga horária</li>
-                        <li><i class="fas fa-file-alt"></i> Registro de conteúdo programático</li>
-                    </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Triggers Section -->
+    <section class="triggers" id="porque">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Por que Investir</span>
+                <h2 class="section-title">A realidade da hotelaria exige preparo</h2>
+            </div>
+
+            <div class="triggers-marquee">
+                <div class="triggers-track">
+                    <div class="trigger-card"><i class="fas fa-exclamation-triangle"></i><p>"1 acidente elétrico custa mais que anos de treinamento preventivo"</p></div>
+                    <div class="trigger-card"><i class="fas fa-gavel"></i><p>"Sem capacitação específica, a responsabilidade jurídica é 100% da empresa"</p></div>
+                    <div class="trigger-card"><i class="fas fa-shield-alt"></i><p>"Material auditável é seu escudo em fiscalizações e processos"</p></div>
+                    <div class="trigger-card"><i class="fas fa-water"></i><p>"Áreas molhadas são responsáveis por 40% dos acidentes em hotéis"</p></div>
+                    <div class="trigger-card"><i class="fas fa-users"></i><p>"Hóspedes expostos a riscos elétricos geram indenizações milionárias"</p></div>
+                    <div class="trigger-card"><i class="fas fa-clock"></i><p>"Operação 24/7 exige protocolos especiais que a NR-10 genérica não ensina"</p></div>
+                    <div class="trigger-card"><i class="fas fa-exclamation-triangle"></i><p>"1 acidente elétrico custa mais que anos de treinamento preventivo"</p></div>
+                    <div class="trigger-card"><i class="fas fa-gavel"></i><p>"Sem capacitação específica, a responsabilidade jurídica é 100% da empresa"</p></div>
+                    <div class="trigger-card"><i class="fas fa-shield-alt"></i><p>"Material auditável é seu escudo em fiscalizações e processos"</p></div>
+                    <div class="trigger-card"><i class="fas fa-water"></i><p>"Áreas molhadas são responsáveis por 40% dos acidentes em hotéis"</p></div>
+                    <div class="trigger-card"><i class="fas fa-users"></i><p>"Hóspedes expostos a riscos elétricos geram indenizações milionárias"</p></div>
+                    <div class="trigger-card"><i class="fas fa-clock"></i><p>"Operação 24/7 exige protocolos especiais que a NR-10 genérica não ensina"</p></div>
+                </div>
+            </div>
+
+            <div class="triggers-stats">
+                <div class="trigger-stat">
+                    <span class="stat-value">80%</span>
+                    <span class="stat-desc">dos acidentes poderiam ser evitados com treinamento específico</span>
+                </div>
+                <div class="trigger-stat">
+                    <span class="stat-value">R$ 1M+</span>
+                    <span class="stat-desc">é o valor médio de indenização por acidente com hóspede</span>
+                </div>
+                <div class="trigger-stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-desc">das redes hoteleiras exigem comprovação de capacitação</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta">
+    <section class="cta-section">
         <div class="container">
-            <div class="cta-wrapper">
-                <div class="cta-content">
-                    <h2>Pronto para capacitar sua equipe?</h2>
-                    <p>Treinamento técnico setorial não é custo — é <strong>proteção operacional, jurídica e institucional</strong>.</p>
-                </div>
+            <div class="cta-content">
+                <h2>Pronto para capacitar sua equipe?</h2>
+                <p>Treinamento técnico setorial não é custo — é <strong>proteção operacional, jurídica e institucional</strong>.</p>
                 <div class="cta-actions">
-                    <a href="https://wa.me/" class="btn btn-whatsapp btn-lg" target="_blank">
+                    <a href="https://wa.me/5517991236884" class="btn btn-whatsapp btn-lg" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                         Falar pelo WhatsApp
                     </a>
-                    <a href="mailto:seu-email@exemplo.com" class="btn btn-outline-light btn-lg">
+                    <a href="mailto:contato@nr10hotelaria.com.br" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-envelope"></i>
                         Enviar Email
                     </a>
@@ -473,80 +474,78 @@
     <!-- Contact Section -->
     <section class="contact" id="contato">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Contato</span>
-                <h2 class="section-title">Entre em contato</h2>
-                <p class="section-desc">
-                    Solicite informações sobre turmas, propostas para in company ou esclareça suas dúvidas
-                </p>
-            </div>
-            <div class="contact-grid">
+            <div class="contact-wrapper">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>WhatsApp</h4>
-                            <p>Fale diretamente conosco para respostas rápidas</p>
-                            <a href="https://wa.me/" class="contact-link" target="_blank">Enviar mensagem</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>Envie sua solicitação de proposta ou dúvidas</p>
-                            <a href="mailto:seu-email@exemplo.com" class="contact-link">seu-email@exemplo.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Modalidades</h4>
-                            <p>Online ao vivo, Online gravado ou In Company</p>
-                            <span class="contact-note">Turmas fechadas para redes hoteleiras</span>
-                        </div>
+                    <span class="section-tag">Contato</span>
+                    <h2 class="section-title">Vamos conversar</h2>
+                    <p class="contact-desc">Solicite uma proposta personalizada para sua empresa ou tire suas dúvidas.</p>
+                    
+                    <div class="contact-methods">
+                        <a href="https://wa.me/5517991236884" class="contact-method" target="_blank">
+                            <div class="method-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+                            <div class="method-info">
+                                <h4>WhatsApp</h4>
+                                <p>Resposta rápida</p>
+                                <span class="method-action">Enviar mensagem <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+
+                        <a href="mailto:contato@nr10hotelaria.com.br" class="contact-method">
+                            <div class="method-icon email"><i class="fas fa-envelope"></i></div>
+                            <div class="method-info">
+                                <h4>Email</h4>
+                                <p>contato@nr10hotelaria.com.br</p>
+                                <span class="method-action">Enviar email <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </a>
                     </div>
                 </div>
+
                 <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="#" method="POST">
                         <h3>Solicite Informações</h3>
+                        
                         <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+                            <label for="contactName">Nome completo</label>
+                            <input type="text" id="contactName" name="name" placeholder="Seu nome" required>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactEmail">Email</label>
+                                <input type="email" id="contactEmail" name="email" placeholder="seu@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhone">Telefone</label>
+                                <input type="tel" id="contactPhone" name="phone" placeholder="(00) 00000-0000">
+                            </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="company">Empresa/Hotel</label>
-                            <input type="text" id="company" name="company" placeholder="Nome da empresa">
+                            <label for="contactCompany">Empresa / Hotel</label>
+                            <input type="text" id="contactCompany" name="company" placeholder="Nome da empresa">
                         </div>
+
                         <div class="form-group">
-                            <label for="interest">Interesse</label>
-                            <select id="interest" name="interest" required>
+                            <label for="contactInterest">Interesse</label>
+                            <select id="contactInterest" name="interest" required>
                                 <option value="">Selecione...</option>
                                 <option value="basico">NR-10 Básico (40h)</option>
                                 <option value="sep">NR-10 SEP (40h)</option>
-                                <option value="reciclagem">Reciclagem (16h)</option>
+                                <option value="reciclagem">Reciclagem (08 ou 16h)</option>
                                 <option value="combo">Combo Completo</option>
                                 <option value="incompany">In Company</option>
-                                <option value="outros">Outros</option>
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Descreva sua necessidade..."></textarea>
+                            <label for="contactMessage">Mensagem</label>
+                            <textarea id="contactMessage" name="message" rows="4" placeholder="Descreva sua necessidade..."></textarea>
                         </div>
+
                         <button type="submit" class="btn btn-primary btn-block">
+                            <span>Enviar Solicitação</span>
                             <i class="fas fa-paper-plane"></i>
-                            Enviar Solicitação
                         </button>
                     </form>
                 </div>
@@ -572,32 +571,24 @@
                             <li><a href="#inicio">Início</a></li>
                             <li><a href="#sobre">Sobre</a></li>
                             <li><a href="#conteudo">Conteúdo</a></li>
-                            <li><a href="#formatos">Formatos</a></li>
+                            <li><a href="#modalidades">Modalidades</a></li>
                             <li><a href="#contato">Contato</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Treinamentos</h4>
                         <ul>
-                            <li><a href="#formatos">NR-10 Básico (40h)</a></li>
-                            <li><a href="#formatos">NR-10 SEP (40h)</a></li>
-                            <li><a href="#formatos">Reciclagem (16h)</a></li>
-                            <li><a href="#formatos">In Company</a></li>
+                            <li><a href="#modalidades">NR-10 Básico (40h)</a></li>
+                            <li><a href="#modalidades">NR-10 SEP (40h)</a></li>
+                            <li><a href="#modalidades">Reciclagem (08 ou 16h)</a></li>
+                            <li><a href="#modalidades">In Company</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Contato</h4>
                         <ul>
-                            <li>
-                                <a href="https://wa.me/" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:seu-email@exemplo.com">
-                                    <i class="fas fa-envelope"></i> Email
-                                </a>
-                            </li>
+                            <li><a href="https://wa.me/5517991236884" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                            <li><a href="mailto:contato@nr10hotelaria.com.br"><i class="fas fa-envelope"></i> Email</a></li>
                         </ul>
                     </div>
                 </div>
@@ -610,9 +601,9 @@
     </footer>
 
     <!-- Back to Top -->
-    <a href="#" class="back-to-top" id="backToTop">
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
         <i class="fas fa-arrow-up"></i>
-    </a>
+    </button>
 
     <script src="js/main.js"></script>
 </body>
